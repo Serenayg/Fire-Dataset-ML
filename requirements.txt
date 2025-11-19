@@ -1,6 +1,5 @@
 flask
 gunicorn
-xgboost
 scikit-learn
 pandas
 numpy
