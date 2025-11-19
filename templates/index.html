@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Acoustic Extinguisher Fire Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 30px; background: #fafafa; }
+        h1 { color: #333; }
+        label { font-weight: bold; display: block; margin-top: 12px; }
+        input, select { width: 300px; padding: 8px; margin-top: 5px; }
+        small { color: #555; font-size: 12px; margin-top: 2px; display:block; }
+        button {
+            margin-top: 20px; padding: 12px 18px; font-size: 16px;
+            background:#ff5c33; color:white; border:none; cursor:pointer;
+        }
+        button:hover { background:#ff3300; }
+        .result { margin-top: 30px; padding: 15px; font-size: 18px; font-weight: bold; border-radius: 6px; }
+        .safe { background:#e6f8ec; color:#0f8a3b; }
+        .fire { background:#ffe6e6; color:#cc0000; }
+    </style>
+</head>
+
+<body>
+    <h1>🔥 Acoustic Extinguisher Fire Prediction System</h1>
+    <p>Enter the values below to estimate fire occurrence using acoustic signals and airflow parameters.</p>
+
+    <form method="POST">
+        <label>SIZE (m³)</label>
+        <input type="number" step="any" name="SIZE" required placeholder="Suggested range: 1 – 7">
+
+        <label>DISTANCE (meters)</label>
+        <input type="number" step="any" name="DISTANCE" required placeholder="Suggested range: 10 – 190">
+
+        <label>DESIBEL (Noise Level)</label>
+        <input type="number" step="any" name="DESIBEL" required placeholder="Suggested range: 72 – 113">
+
+        <label>AIRFLOW (CFM)</label>
+        <input type="number" step="any" name="AIRFLOW" required placeholder="Suggested range: 0 – 17">
+
+        <label>FREQUENCY (Hz)</label>
+        <input type="number" step="any" name="FREQUENCY" required placeholder="Suggested range: 1 – 75">
+
+        <label>Fuel Type</label>
+
+<label>Kerosene</label>
+<select name="FUEL_kerosene">
+    <option value="0">NO</option>
+    <option value="1">YES</option>
+</select>
+
+<label>LPG</label>
+<select name="FUEL_lpg">
+    <option value="0">NO</option>
+    <option value="1">YES</option>
+</select>
+
+<label>Thinner</label>
+<select name="FUEL_thinner">
+    <option value="0">NO</option>
+    <option value="1">YES</option>
+</select>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction is not none %}
+        {% if prediction == 1 %}
+            <div class="result fire">🔥 Prediction: FIRE DETECTED – Acoustic extinguishing required.</div>
+        {% else %}
+            <div class="result safe">🟢 Prediction: SAFE – No fire detected.</div>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
